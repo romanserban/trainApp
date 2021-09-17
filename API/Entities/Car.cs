@@ -8,6 +8,8 @@ namespace API.Entities
         public int id { get; set; }
         public int NumberOfSeats { get; set; }
 
+        public string CarType { get; set; }
+
         public List<Seat> Seats { get; set; }
 
         public int TrainId { get; set; }

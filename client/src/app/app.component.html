@@ -8,12 +8,46 @@
   <ul class="list-group container" style="margin-top: 10px;">
     <div *ngFor='let t of trains'>
       <div *ngIf="t.dayOfTheWeek==day">
-        <li>
-          <a class="list-group-item list-group-item-action"
-            href="">{{t.name}}---{{t.dayOfTheWeek}}</a>
+        <li class="list-group-item list-group-item-action" (click)="getTrain(t.id)">
+          {{t.name}}---{{t.dayOfTheWeek}}
         </li>
       </div>
     </div>
   </ul>
+  <div *ngIf="trainById!">
+    <h2>The abailable seats for train {{trainById.name}} are :</h2>
+    <div *ngFor='let c of trainById.cars'>
+      <h3 class="center"> {{c.carType}}</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <div >
+          <tbody>
+            <tr *ngFor='let s of c.seats'>
+              <th>{{s.seatNumber}}</th>
+              <div *ngIf='(s.reservationid==0)'>
+                <td style="background-color: green;">{{s.id}}</td>
+              </div>
+              <div *ngIf='(s.reservationid!=0)'>
+                <td style="background-color:red;">{{s.id}}</td>
+              </div>
 
-</div>
+            </tr>
+
+          </tbody>
+        </div>
+      </table>
+      <!-- <div *ngIf=".dayOfTheWeek==day"> -->
+      <!-- <li class="list-group-item list-group-item-action">
+            {{c.id}} 
+          </li> -->
+      <!-- </div> -->
+    </div>
+
+  </div>
