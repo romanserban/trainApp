@@ -1,0 +1,7 @@
+<form #calendarFrom="ngForm" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="day" style="margin-left: 2em;">Date: </label>
+        <input type="date" name="day" [(ngModel)]="day">
+    </div>
+    <button style="margin-left: 2em;" type="submit" class="btn btn-primary">Submit</button>
+</form>

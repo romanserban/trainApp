@@ -14,5 +14,7 @@ namespace API.Data
         public DbSet<Car> Cars { get; set; }
 
         public DbSet<Seat> Seats { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

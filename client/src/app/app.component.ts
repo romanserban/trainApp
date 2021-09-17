@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'TrainApp';
+  day: any;
   trains: any;
 
   constructor(private http: HttpClient) {
@@ -23,4 +24,9 @@ export class AppComponent implements OnInit {
       console.log(error);
     });
   }
+  dayWeekMode(event: string) {
+    this.day = event;
+  }
+
+
 }

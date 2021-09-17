@@ -1,4 +1,19 @@
-<h1>{{title}}</h1>
-<ul>
-  <li *ngFor='let t of trains'>{{t.id}}---{{t.name}}---{{t.dayOfTheWeek}}</li>
-</ul>
+<div>
+  <app-nav></app-nav>
+</div>
+<div style="margin-top: 100px;">
+  <app-calendar (dayWeek)="dayWeekMode($event)"></app-calendar>
+</div>
+<div>
+  <ul class="list-group container" style="margin-top: 10px;">
+    <div *ngFor='let t of trains'>
+      <div *ngIf="t.dayOfTheWeek==day">
+        <li>
+          <a class="list-group-item list-group-item-action"
+            href="">{{t.name}}---{{t.dayOfTheWeek}}</a>
+        </li>
+      </div>
+    </div>
+  </ul>
+
+</div>

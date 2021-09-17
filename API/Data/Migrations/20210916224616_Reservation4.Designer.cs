@@ -2,14 +2,16 @@
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210916224616_Reservation4")]
+    partial class Reservation4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,9 +60,6 @@ namespace API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("seatId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("id");
 
                     b.ToTable("Reservations");
@@ -84,6 +83,8 @@ namespace API.Data.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("Carid");
+
+                    b.HasIndex("Reservationid");
 
                     b.ToTable("Seats");
                 });
@@ -121,9 +122,20 @@ namespace API.Data.Migrations
                         .HasForeignKey("Carid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("API.Entities.Reservation", null)
+                        .WithMany("Seats")
+                        .HasForeignKey("Reservationid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Entities.Car", b =>
+                {
+                    b.Navigation("Seats");
+                });
+
+            modelBuilder.Entity("API.Entities.Reservation", b =>
                 {
                     b.Navigation("Seats");
                 });

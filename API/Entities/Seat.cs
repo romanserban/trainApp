@@ -6,5 +6,7 @@ namespace API.Entities
         public int SeatNumber { get; set; }
 
         public int Carid { get; set; }
+
+        public int Reservationid { get; set; }
     }
 }
